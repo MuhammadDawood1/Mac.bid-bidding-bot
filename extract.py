@@ -29,14 +29,16 @@ def driverFunc():
     # For ChromeDriver version 79.0.3945.16 or over
     chromeOptions.add_argument('--disable-blink-features=AutomationControlled')
     driver = webdriver.Chrome(options=chromeOptions)
-    driver.implicitly_wait(10)
+    driver.implicitly_wait(5)
     return driver
 
 
 def extractItems(driver):
     
     driver.get('https://www.mac.bid/account/watchlist')
-    sleep(5)
+    sleep(3)
+    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);var lenOfPage=document.body.scrollHeight;return lenOfPage;")
+    sleep(6)
     items = driver.find_elements(by=By.XPATH, value='//*[@class="card product-card d-block d-sm-flex flex-row"]')
 
     listOfItems = []

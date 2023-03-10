@@ -27,6 +27,7 @@ def bid(timeRemainingInSeconds,lotNumber):
     sleep(timeRemainingInSeconds -140)
     driver = driverFunc()
     driver.get(lotNumber.strip())
+    sleep(5)
     #listOfItems = extractItems(driver)
     currentBid = None
     bidButton = None
@@ -39,6 +40,7 @@ def bid(timeRemainingInSeconds,lotNumber):
     bidButton = driver.find_element(by=By.XPATH, value='//*[@class="btn btn-primary btn-shadow btn-block"]')
     currentBid = float(driver.find_element(by=By.XPATH, value='//*[@class="h1 font-weight-normal text-accent mb-0 mr-4"]/span').text.replace('$',''))
     driver.execute_script("return arguments[0].scrollIntoView();", bidButton)
+    sleep(1)
     if(bidPrice >= currentBid):
         bidButton.click()
         try:
@@ -57,7 +59,7 @@ def bid(timeRemainingInSeconds,lotNumber):
                         
             except Exception as e:
                 print('regiter to bid btn not found')
-    sleep(7)
+    sleep(4)
     driver.close()
 
 def start():
