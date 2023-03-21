@@ -3,3 +3,8 @@ src
 chromedriver.exe
 itemsWithPrices.xlsx
 __pycache__
+display.jfif
+bot.spec
+screenshot(29).png
+dist
+build
