@@ -44,11 +44,12 @@ def extractItems(driver):
     listOfItems = []
     for item in items:
         itemDict = {}
-        days = int(list(item.find_element(by=By.CLASS_NAME, value='cz-countdown-days').text)[0])
-        hours = int(list(item.find_element(by=By.CLASS_NAME, value='cz-countdown-hours').text)[0])
-        miniutes = int(list(item.find_element(by=By.CLASS_NAME, value='cz-countdown-minutes').text)[0])
+        days = int(item.find_element(by=By.CLASS_NAME, value='cz-countdown-days').text.split('d')[0])
+        hours = int(item.find_element(by=By.CLASS_NAME, value='cz-countdown-hours').text.split('h')[0])
+        miniutes = int(item.find_element(by=By.CLASS_NAME, value='cz-countdown-minutes').text.split('m')[0])
+        print(days,hours,miniutes)
         timeInSeconds = (days*24*60 + hours*60 + miniutes)*60 
-        itemDict['timeRmaining'] = timeInSeconds
+        itemDict['timeRemaining'] = timeInSeconds
         #dropDown = item.find_element_by_tag_name('select')
         #options = dropDown.find_elements_by_tag_name('option')
         itemDict['lotNumber'] = item.find_element(by=By.TAG_NAME, value='a').get_attribute('href')
@@ -62,6 +63,9 @@ def extractItems(driver):
 
 
 
+# d = driverFunc()
+# d.get('https://www.mac.bid')
+# sleep(3600)
 #print(extractItems(driverFunc()))
 #print(listOfItems)
 # cardInWatchList = 'card product-card d-block d-sm-flex flex-row'

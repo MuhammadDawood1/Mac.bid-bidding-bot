@@ -22,7 +22,7 @@ def getItemsFromExcel():
 def bid(timeRemainingInSeconds,lotNumber):
     
     itemsWithPricesDict = getItemsFromExcel()
-    print(itemsWithPricesDict.get(lotNumber.strip()))
+    #print(itemsWithPricesDict.get(lotNumber.strip()))
     bidPrice = int(itemsWithPricesDict.get(lotNumber.strip()))
     sleep(timeRemainingInSeconds -140)
     driver = driverFunc()
@@ -67,13 +67,15 @@ def start():
     driver = driverFunc()
     listOfItems = extractItems(driver)
     driver.close()
-    seconds = 180
+    #seconds = 180
     for item in listOfItems:
         time = item.get('timeRemaining')
         lotNumber = item.get('lotNumber').strip()
+        print(time)
+        #print(time%(24*60*60),(time%(24*60*60))*24 - time%(24*60),(time%(24*60*60))*24*60 - time%60,(time%(24*60*60))*24*60*60 - time)
         #print(lotNumber)
-        threads.append(threading.Thread(target=bid,args=(seconds,lotNumber)))
-        seconds = seconds + 60
+        threads.append(threading.Thread(target=bid,args=(time,lotNumber)))
+        #seconds = seconds + 60
 
     for thread in threads:
         thread.start()
