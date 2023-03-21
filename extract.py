@@ -47,7 +47,7 @@ def extractItems(driver):
         days = int(item.find_element(by=By.CLASS_NAME, value='cz-countdown-days').text.split('d')[0])
         hours = int(item.find_element(by=By.CLASS_NAME, value='cz-countdown-hours').text.split('h')[0])
         miniutes = int(item.find_element(by=By.CLASS_NAME, value='cz-countdown-minutes').text.split('m')[0])
-        print(days,hours,miniutes)
+        #print(days,hours,miniutes)
         timeInSeconds = (days*24*60 + hours*60 + miniutes)*60 
         itemDict['timeRemaining'] = timeInSeconds
         #dropDown = item.find_element_by_tag_name('select')

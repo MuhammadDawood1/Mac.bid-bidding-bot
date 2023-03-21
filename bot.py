@@ -71,7 +71,7 @@ def start():
     for item in listOfItems:
         time = item.get('timeRemaining')
         lotNumber = item.get('lotNumber').strip()
-        print(time)
+        #print(time)
         #print(time%(24*60*60),(time%(24*60*60))*24 - time%(24*60),(time%(24*60*60))*24*60 - time%60,(time%(24*60*60))*24*60*60 - time)
         #print(lotNumber)
         threads.append(threading.Thread(target=bid,args=(time,lotNumber)))
